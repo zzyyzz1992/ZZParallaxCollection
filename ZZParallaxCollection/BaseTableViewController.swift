@@ -15,7 +15,7 @@ class BaseTableViewController: UITableViewController {
     }
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        var  scrollOffset:CGFloat = scrollView.contentOffset.y;
+        let  scrollOffset:CGFloat = scrollView.contentOffset.y;
         //        println(scrollOffset)
         let hv = tableView.tableHeaderView as! ParallaxHeader
         if (scrollOffset < 0) {

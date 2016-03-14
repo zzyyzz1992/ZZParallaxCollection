@@ -25,7 +25,7 @@ class UnitCollectionViewCell: UICollectionViewCell {
     //setup cell
     func setupCell(imageName:String,headerHeight:CGFloat,type:BaseTableViewController.Type,paddingSize:CGSize){
         baseTableViewType = type
-        baseTableViewController = baseTableViewType!()
+        baseTableViewController = baseTableViewType!.init()
         baseTableViewController?.initHeader(imageName, headerHeight,paddingSize: paddingSize)
         //handle the situation of reusing a cell
         baseTableViewController?.tableView.scrollToRowAtIndexPath(

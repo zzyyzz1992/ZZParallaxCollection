@@ -11,11 +11,11 @@ import UIKit
 class DemoParallaxCollectionViewController: BaseParallaxCollectionViewController {
     lazy var pics:[String] = {
         var ps = [String]()
-        for i in 1...9 {
+        for i in 1...1 {
             ps += ["\(i).pic"]
         }
         return ps
-        }()
+    }()
     let paddingSize = CGSizeMake(20, 20)
     override func viewDidLoad() {
         super.viewDidLoad()

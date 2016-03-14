@@ -8,13 +8,13 @@
 
 import UIKit
 /**
-    the Parallax header view,
-    which contains the parallaxy image
-*/
+ the Parallax header view,
+ which contains the parallaxy image
+ */
 class ParallaxHeader : UIView
 {
     // MARK: - properties
-    private var heightConstraints:[AnyObject]?
+    private var heightConstraints:[NSLayoutConstraint]?
     private var imageView = UIImageView()
     private var imageContainer = UIView()
     private var paddingX:CGFloat?
@@ -33,7 +33,7 @@ class ParallaxHeader : UIView
             if let c = heightConstraints {
                 self.removeConstraints(c)
             }
-            heightConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(diff)-[ic]", options: nil, metrics: ["diff":(minimumHeight! - height!)], views: ["ic":imageContainer])
+            heightConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(diff)-[ic]", options: [], metrics: ["diff":(minimumHeight! - height!)], views: ["ic":imageContainer])
             self.addConstraints(heightConstraints!)
         }
     }
@@ -44,11 +44,11 @@ class ParallaxHeader : UIView
     }
     
     /**
-    setup initial layout
-    */
+     setup initial layout
+     */
     func doSetup(){
-        imageContainer.setTranslatesAutoresizingMaskIntoConstraints(false)
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageContainer.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(imageContainer)
         imageContainer.addSubview(imageView)
@@ -58,13 +58,13 @@ class ParallaxHeader : UIView
         imageContainer.clipsToBounds = true
         
         //constraints for container
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[ic]-(0)-|", options: nil, metrics: nil, views: ["ic":imageContainer]))
-        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(0)-[ic]-(0)-|", options: nil, metrics: nil, views: ["ic":imageContainer]))
+        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[ic]-(0)-|", options: [], metrics: nil, views: ["ic":imageContainer]))
+        self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(0)-[ic]-(0)-|", options: [], metrics: nil, views: ["ic":imageContainer]))
         
         // MARK: - constraints for imageView
         // imageView's size constraints
-        imageContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(<=0)-[iv]-(<=0)-|", options: nil, metrics: nil, views: ["iv":imageView]))
-        imageContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(<=0)-[iv]-(<=0)-|", options: nil, metrics: nil, views: ["iv":imageView]))
+        imageContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(<=0)-[iv]-(<=0)-|", options: [], metrics: nil, views: ["iv":imageView]))
+        imageContainer.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(<=0)-[iv]-(<=0)-|", options: [], metrics: nil, views: ["iv":imageView]))
         //center XY
         let cX = NSLayoutConstraint(item: imageView, attribute: .CenterX, relatedBy: .Equal, toItem: imageContainer, attribute: .CenterX, multiplier: 1.0, constant: 0)
         cX.priority = 999
@@ -90,12 +90,12 @@ class ParallaxHeader : UIView
     }
     
     // MARK: - headerView class contructor
-    class func headerView(#imageName:String,fixedHeaderHeight height:CGFloat, paddingSize:CGSize) -> ParallaxHeader{
-        var header = ParallaxHeader()
+    class func headerView(imageName imageName:String,fixedHeaderHeight height:CGFloat, paddingSize:CGSize) -> ParallaxHeader{
+        let header = ParallaxHeader()
         if let i = UIImage(named: imageName){
             header.imageView.image = i
         }else{
-            println("image:\(imageName) not exist!")
+            print("image:\(imageName) not exist!")
         }
         header.minimumHeight = height
         header.paddingX = paddingSize.width

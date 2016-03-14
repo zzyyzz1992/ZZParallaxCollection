@@ -48,7 +48,7 @@ class BaseParallaxCollectionViewController: UIViewController,UICollectionViewDel
         for cell in collectionView.visibleCells() as! [UnitCollectionViewCell] {
             let idx = collectionView.indexPathForCell(cell)!
             let offset:CGFloat = width * CGFloat(idx.row)
-            var diff = (dx - offset)
+            let diff = (dx - offset)
             cell.setDX(diff/velocityFactorOfParallaxScroll)
         }
     }
