@@ -8,12 +8,15 @@
 
 import UIKit
 /**
-    Unit Collection View Cell,
-    which includes a UnitTableViewController
-*/
+ Unit Collection View Cell,
+ which includes a UnitTableViewController
+ */
 class UnitCollectionViewCell: UICollectionViewCell {
     // MARK: - properties
     var baseTableViewController:BaseTableViewController? {
+        willSet{
+            baseTableViewController?.view.removeFromSuperview()
+        }
         didSet{
             self.addSubview(baseTableViewController!.view)
         }
